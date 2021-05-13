@@ -63,3 +63,4 @@ kcp upgrade kyma --target {TARGET SPEC} ... [--target-exclude {TARGET SPEC} ...]
 ## See also
 
 * [kcp upgrade](kcp_upgrade.md)	 - Performs upgrade operations on Kyma Runtimes.
+

@@ -1,10 +1,27 @@
-# kcp upgrade
+# kcp upgrade cluster
 
-Performs upgrade operations on Kyma Runtimes.
+Upgrades Kubernetes cluster on one or more Kyma Runtimes.
 
 ## Synopsis
 
-Performs upgrade operations on Kyma Runtimes.
+Upgrade Kubernetes cluster and/or machine images on targets of Runtimes.
+The upgrade is performed by Kyma Control Plane (KCP) within a new orchestration asynchronously. The ID of the orchestration is returned by the command upon success.
+The targets of Runtimes are specified via the `--target` and `--target-exclude` options. At least one `--target` must be specified.
+The version of Kubernetes and machine images is configured by Kyma Environment Broker (KEB).
+Additional Kyma configurations to use for the upgrade are taken from Kyma Control Plane during the processing of the orchestration.
+
+```bash
+kcp upgrade cluster --target {TARGET SPEC} ... [--target-exclude {TARGET SPEC} ...] [flags]
+```
+
+## Examples
+
+```
+kcp upgrade cluster --target all --schedule maintenancewindow    Upgrade Kubernetes cluster on Runtime in their next respective maintenance window hours.
+  kcp upgrade cluster --target "account=CA.*"                       Upgrade Kubernetes cluster on Runtimes of all global accounts starting with CA.
+  kcp upgrade cluster --target all --target-exclude "account=CA.*"  Upgrade Kubernetes cluster on Runtimes of all global accounts not starting with CA.
+  kcp upgrade cluster --target "region=europe|eu|uk"                Upgrade Kubernetes cluster on Runtimes whose region belongs to Europe.
+```
 
 ## Global Options
 
@@ -23,7 +40,5 @@ Performs upgrade operations on Kyma Runtimes.
 
 ## See also
 
-* [kcp](kcp.md)	 - Day-two operations tool for Kyma Runtimes.
-* [kcp upgrade cluster](kcp_upgrade_cluster.md)	 - Upgrades Kubernetes cluster on one or more Kyma Runtimes.
-* [kcp upgrade kyma](kcp_upgrade_kyma.md)	 - Upgrades or reconfigures Kyma on one or more Kyma Runtimes.
+* [kcp upgrade](kcp_upgrade.md)	 - Performs upgrade operations on Kyma Runtimes.
 
